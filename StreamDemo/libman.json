@@ -11,6 +11,11 @@
         "dist/browser/signalr.min.js",
         "dist/browser/signalr.min.js.map"
       ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "two.js@0.6.0",
+      "destination": "wwwroot/lib/two.js/"
     }
   ]
 }

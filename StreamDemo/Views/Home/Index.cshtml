@@ -1,12 +1,73 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@page
+@{
+    Layout = null;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
 
-@section scripts{ 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
 
-}
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/two.js/two.js"></script>
+    <script src="~/signalr/dist/browser/signalr.js"></script>
+    <div id="draw">
+
+    </div>
+
+    <script>
+        var el = document.getElementById("draw"),
+            two = new Two({
+                fullscreen: true
+            });
+
+        two.appendTo(el);
+
+        var drawCricle = function (x, y) {
+            var circle = two.makeCircle(x, y, 5);
+            circle.fill = "#881111";
+
+            two.update();
+        }
+
+        $("#draw").click(function (e) {
+
+            drawCricle(e.pageX, e.pageY)
+
+            connection.invoke("SendCoord", e.pageX, e.pageY)
+                .catch(function (err) {
+                    return console.error(err.toString());
+                });
+        });
+
+       
+    </script>
+    <script>
+        "use strict";
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("/drawingHub").build();
+
+        connection.on("ReceiveCoord", function (x, y) {
+            drawCricle(x, y)
+        });
+
+        connection.on("ReceiveLine", function (x1, y1, x2, y2) {
+            drawLine(x1, y1, x2, y2)
+        });
+
+
+        connection.start().catch(function (err) {
+            return console.error(err.toString());
+        });
+
+
+
+    </script>
+
+
+</body>
+</html>
