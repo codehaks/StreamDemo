@@ -39,10 +39,27 @@
 
             drawCricle(e.pageX, e.pageY)
 
-            connection.invoke("SendCoord", e.pageX, e.pageY)
-                .catch(function (err) {
-                    return console.error(err.toString());
-                });
+            const subject = new signalR.Subject();
+
+            yield connection.send("SendCoord", subject);
+
+            var iteration = 0;
+
+            //const intervalHandle = setInterval(() => {
+            //    iteration++;
+            //    subject.next(iteration.toString());
+            //    if (iteration === 10) {
+            //        clearInterval(intervalHandle);
+            //        subject.complete();
+            //    }
+            //}, 500);
+
+           
+
+            //connection.invoke("SendCoord", e.pageX, e.pageY)
+            //    .catch(function (err) {
+            //        return console.error(err.toString());
+            //    });
         });
 
 
@@ -52,9 +69,22 @@
 
         var connection = new signalR.HubConnectionBuilder().withUrl("/streamHub").build();
 
-        connection.on("ReceiveCoord", function (x, y) {
-            drawCricle(x, y)
-        });
+        connection.stream("SendCoord", e.pageX, e.pageY)
+            .subscribe({
+                next: (item) => {
+                    drawCricle(item.x, item.y)
+                },
+                complete: () => {
+
+                },
+                error: (err) => {
+
+                },
+            });
+
+        //connection.on("ReceiveCoord", function (x, y) {
+        //    drawCricle(x, y)
+        //});
 
         connection.start().catch(function (err) {
             return console.error(err.toString());
