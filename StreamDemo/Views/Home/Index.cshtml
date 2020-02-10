@@ -12,9 +12,10 @@
 </head>
 <body>
 
-    <script src="~/lib/jquery/jquery.js"></script>
+    
+    <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/two.js/two.js"></script>
-    <script src="~/signalr/dist/browser/signalr.js"></script>
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
     <div id="draw">
 
     </div>
@@ -44,21 +45,16 @@
                 });
         });
 
-       
+
     </script>
     <script>
         "use strict";
 
-        var connection = new signalR.HubConnectionBuilder().withUrl("/drawingHub").build();
+        var connection = new signalR.HubConnectionBuilder().withUrl("/streamHub").build();
 
         connection.on("ReceiveCoord", function (x, y) {
             drawCricle(x, y)
         });
-
-        connection.on("ReceiveLine", function (x1, y1, x2, y2) {
-            drawLine(x1, y1, x2, y2)
-        });
-
 
         connection.start().catch(function (err) {
             return console.error(err.toString());
