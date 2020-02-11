@@ -16,7 +16,7 @@ namespace StreamDemo.Hubs
     {
         public async Task SendCoord(int x, int y)
         {
-            await Clients.All.SendAsync("GetCoord", x, y);
+            await Clients.Others.SendAsync("GetCoord", x, y);
         }
     }
 }
