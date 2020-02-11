@@ -60,16 +60,31 @@ namespace WinDemo
 
         private async void Form1_MouseDown(object sender, MouseEventArgs e)
         {
-            textBox1.Text = e.X.ToString();
-            textBox2.Text = e.Y.ToString();
+            //textBox1.Text = e.X.ToString();
+            //textBox2.Text = e.Y.ToString();
 
-            textBox3.Text += $" {e.X},{e.Y} \n";
+            //textBox3.Text += $" {e.X},{e.Y} \n";
 
-            var coord = new Coord();
-            coord.X = e.X;
-            coord.Y = e.Y;
+            //var coord = new Coord();
+            //coord.X = e.X;
+            //coord.Y = e.Y;
 
-            await connection.SendAsync("SendCoord", coord);
+            //await connection.SendAsync("SendCoord", coord);
+        }
+
+        async IAsyncEnumerable<string> ReadCoords()
+        {
+            for (var i = 0; i < 5; i++)
+            {
+                var data = await FetchSomeData();
+                yield return data;
+            }
+            //After the for loop has completed and the local function exits the stream completion will be sent.
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
