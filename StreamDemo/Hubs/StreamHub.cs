@@ -11,16 +11,12 @@ namespace StreamDemo.Hubs
         public int X { get; set; }
         public int Y { get; set; }
     }
-    public class StreamHub:Hub
+
+    public class StreamHub : Hub
     {
-        public async  IAsyncEnumerable<Coord> SendCoord(IAsyncEnumerable<Coord> coords)
+        public async Task SendCoord(int x, int y)
         {
-            await foreach (var coord in coords)
-            {
-                await Clients.All.SendAsync("ReceiveCoord", coord.X, coord.Y);
-                yield return coord;
-            }
-            
+            await Clients.All.SendAsync("GetCoord", x, y);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace WinDemo
             InitializeComponent();
 
             connection = new HubConnectionBuilder()
-               .WithUrl("http://localhost:53353/ChatHub")
+               .WithUrl("http://localhost:5000/streamHub")
                .Build();
 
             connection.Closed += async (error) =>
@@ -38,10 +38,11 @@ namespace WinDemo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            connection.On<Coord>("GetCoord", (coord) =>
+            connection.On<int,int>("GetCoord", (int x,int y) =>
             {
-                textBox1.Text = coord.X.ToString();
-                textBox2.Text = coord.Y.ToString();
+                textBox1.Text = x.ToString();
+                textBox2.Text = y.ToString();
+                textBox3.Text += $" {x},{y} \n";
             });
 
             connection.StartAsync();
@@ -55,12 +56,14 @@ namespace WinDemo
             //textBox3.Text += $" {e.X},{e.Y} \n";
         }
 
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        private async void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             textBox1.Text = e.X.ToString();
             textBox2.Text = e.Y.ToString();
 
             textBox3.Text += $" {e.X},{e.Y} \n";
+
+            await connection.SendAsync("SendCoord", e.X, e.Y);
         }
     }
 }
