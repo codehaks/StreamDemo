@@ -11,6 +11,8 @@ using System.Windows.Forms;
 
 namespace WinDemo
 {
+
+
     public partial class Form1 : Form
     {
         private HubConnection connection;
@@ -38,11 +40,11 @@ namespace WinDemo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            connection.On<int,int>("GetCoord", (int x,int y) =>
+            connection.On<Coord>("GetCoord", (Coord coord) =>
             {
-                textBox1.Text = x.ToString();
-                textBox2.Text = y.ToString();
-                textBox3.Text += $" {x},{y} \n";
+                textBox1.Text = coord.X.ToString();
+                textBox2.Text = coord.Y.ToString();
+                textBox3.Text += $" {coord.X},{coord.Y} \n";
             });
 
             connection.StartAsync();
@@ -63,7 +65,11 @@ namespace WinDemo
 
             textBox3.Text += $" {e.X},{e.Y} \n";
 
-            await connection.SendAsync("SendCoord", e.X, e.Y);
+            var coord = new Coord();
+            coord.X = e.X;
+            coord.Y = e.Y;
+
+            await connection.SendAsync("SendCoord", coord);
         }
     }
 }
