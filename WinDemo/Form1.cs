@@ -46,5 +46,21 @@ namespace WinDemo
 
             connection.StartAsync();
         }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            //textBox1.Text = e.X.ToString();
+            //textBox2.Text = e.Y.ToString();
+            
+            //textBox3.Text += $" {e.X},{e.Y} \n";
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            textBox1.Text = e.X.ToString();
+            textBox2.Text = e.Y.ToString();
+
+            textBox3.Text += $" {e.X},{e.Y} \n";
+        }
     }
 }
