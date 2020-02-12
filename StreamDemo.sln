@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreamDemo", "StreamDemo\St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinDemo", "WinDemo\WinDemo.csproj", "{AD8BCA9C-57D3-435F-9591-B7F07E022E24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp", "MyApp\MyApp.csproj", "{513ABDFF-47FB-4F4D-84A2-8C770BFA7D37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AD8BCA9C-57D3-435F-9591-B7F07E022E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD8BCA9C-57D3-435F-9591-B7F07E022E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD8BCA9C-57D3-435F-9591-B7F07E022E24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{513ABDFF-47FB-4F4D-84A2-8C770BFA7D37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{513ABDFF-47FB-4F4D-84A2-8C770BFA7D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{513ABDFF-47FB-4F4D-84A2-8C770BFA7D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{513ABDFF-47FB-4F4D-84A2-8C770BFA7D37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

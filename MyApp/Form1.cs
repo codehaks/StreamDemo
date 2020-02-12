@@ -9,10 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinDemo
+namespace MyApp
 {
-
-
     public partial class Form1 : Form
     {
         private HubConnection connection;
@@ -50,14 +48,6 @@ namespace WinDemo
             connection.StartAsync();
         }
 
-        private void Form1_MouseMove(object sender, MouseEventArgs e)
-        {
-            //textBox1.Text = e.X.ToString();
-            //textBox2.Text = e.Y.ToString();
-            
-            //textBox3.Text += $" {e.X},{e.Y} \n";
-        }
-
         private async void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             //textBox1.Text = e.X.ToString();
@@ -72,15 +62,15 @@ namespace WinDemo
             //await connection.SendAsync("SendCoord", coord);
         }
 
-        //async IAsyncEnumerable<string> ReadCoords()
-        //{
-        //    for (var i = 0; i < 5; i++)
-        //    {
-        //        var data = await FetchSomeData();
-        //        yield return data;
-        //    }
-        //    //After the for loop has completed and the local function exits the stream completion will be sent.
-        //}
+        async IAsyncEnumerable<string> readcoords()
+        {
+            for (var i = 0; i < 5; i++)
+            {
+                //var data = await fetchsomedata();
+                yield return "";
+            }
+            //after the for loop has completed and the local function exits the stream completion will be sent.
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
