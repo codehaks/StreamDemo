@@ -14,7 +14,7 @@ namespace StreamDemo.Hubs
 
     public class StreamHub : Hub
     {
-        public async Task SendCoord(IAsyncEnumerable<Coord> coords)
+        public async Task SendCoord(IAsyncEnumerable<string> coords)
         {
             //yield return coord;
 
