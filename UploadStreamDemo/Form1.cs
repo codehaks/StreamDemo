@@ -44,22 +44,7 @@ namespace UploadStreamDemo
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            //var counter = 1;
-
             await connection.SendAsync("SendLine", ReadLine(textBox1.Text));
-
-            //await foreach (var line in ReadLine(@"E:\Projects\Data\Firstnames.txt"))
-            //{
-            //    if (line.Trim() != "hakim")
-            //    {
-            //        counter++;
-            //        label1.Text = counter.ToString();
-            //    }
-            //    else
-            //    {
-            //        break;
-            //    }
-            //}
         }
 
 
