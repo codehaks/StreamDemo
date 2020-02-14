@@ -14,6 +14,15 @@ namespace StreamDemo.Hubs
 
     public class StreamHub : Hub
     {
+        public async Task SendLine(IAsyncEnumerable<string> lines)
+        {
+            await foreach (var line in lines)
+            {
+                await Clients.Others.SendAsync("GetLine", line);
+            }
+
+        }
+
         public async Task SendCoord(IAsyncEnumerable<string> coords)
         {
             //yield return coord;
