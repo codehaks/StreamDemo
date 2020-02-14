@@ -36,7 +36,7 @@ namespace UploadStreamDemo
         {
             connection.On<string>("GetLine", (string line) =>
             {
-                textBox1.Text += $"{line}\n";
+                listBox1.Items.Add(line);
             });
 
             connection.StartAsync();
@@ -46,7 +46,7 @@ namespace UploadStreamDemo
         {
             //var counter = 1;
 
-            await connection.SendAsync("SendLine", ReadLine(@"E:\Projects\Data\Firstnames.txt"));
+            await connection.SendAsync("SendLine", ReadLine(@"E:\Projects\Data\test.txt"));
 
             //await foreach (var line in ReadLine(@"E:\Projects\Data\Firstnames.txt"))
             //{
@@ -72,6 +72,7 @@ namespace UploadStreamDemo
             {
                 counter++;
                 label1.Text = counter.ToString();
+                await Task.Delay(1000);
                 yield return await reader.ReadLineAsync();
             }
 
