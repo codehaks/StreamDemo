@@ -26,9 +26,7 @@ namespace UploadStreamDemo
                 .WithUrl("http://localhost:5000/streamHub")
                 .ConfigureLogging(logging =>
                 {
-                    // Log to the Output Window
                     logging.AddDebug();
-                    // This will set ALL logging to Debug level
                     logging.SetMinimumLevel(LogLevel.Debug);
                 })
                 .Build();

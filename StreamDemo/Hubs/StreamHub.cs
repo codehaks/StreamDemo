@@ -22,16 +22,6 @@ namespace StreamDemo.Hubs
             }
 
         }
-
-        public async Task SendCoord(IAsyncEnumerable<string> coords)
-        {
-            //yield return coord;
-
-            await foreach (var coord in coords)
-            {
-                await Clients.Others.SendAsync("GetCoord", coord);
-            }
-
-        }
+        
     }
 }
