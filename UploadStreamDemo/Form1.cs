@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,8 +23,15 @@ namespace UploadStreamDemo
             InitializeComponent();
 
             connection = new HubConnectionBuilder()
-      .WithUrl("http://localhost:5000/streamHub")
-      .Build();
+                .WithUrl("http://localhost:5000/streamHub")
+                .ConfigureLogging(logging =>
+                {
+                    // Log to the Output Window
+                    logging.AddDebug();
+                    // This will set ALL logging to Debug level
+                    logging.SetMinimumLevel(LogLevel.Debug);
+                })
+                .Build();
 
             connection.Closed += async (error) =>
             {
