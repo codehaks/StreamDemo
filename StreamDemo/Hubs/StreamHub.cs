@@ -14,24 +14,26 @@ namespace StreamDemo.Hubs
 
     public class StreamHub : Hub
     {
-        public async Task SendLine(IAsyncEnumerable<string> lines)
+        public async Task SendTempData(IAsyncEnumerable<string> lines)
         {
             await foreach (var line in lines)
             {
-                await Clients.Others.SendAsync("GetLine", line);
+                await Clients.Others.SendAsync("GetData", line);
             }
 
         }
 
-        public async Task SendCoord(IAsyncEnumerable<string> coords)
+        public async  IAsyncEnumerable<string> GetTempData()
         {
-            //yield return coord;
-
-            await foreach (var coord in coords)
+            
+            while (true)
             {
-                await Clients.Others.SendAsync("GetCoord", coord);
+                await Task.Delay(1000);
+                yield return DateTime.Now.Second.ToString();
             }
-
+            
         }
+
+       
     }
 }

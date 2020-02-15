@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -40,14 +41,25 @@ namespace UploadStreamDemo
             };
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
-            connection.On<string>("GetLine", (string line) =>
-            {
-                listBox1.Items.Add(line);
-            });
+            //connection.On<string>("GetLine", (string line) =>
+            //{
+            //    listBox1.Items.Add(line);
+            //});
+
+            var cancellationTokenSource = new CancellationTokenSource();
 
             connection.StartAsync();
+
+            var stream = connection.StreamAsync<string>("GetLine");
+
+            await foreach (var line in stream)
+            {
+                listBox1.Items.Add(line);
+            }
+
+            
         }
 
         private async void button1_Click(object sender, EventArgs e)
