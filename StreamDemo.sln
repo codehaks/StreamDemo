@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29721.120
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreamDemo", "StreamDemo\StreamDemo.csproj", "{A8869020-9C45-4787-9D82-E8466E96BE2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyServer", "StreamDemo\MyServer.csproj", "{A8869020-9C45-4787-9D82-E8466E96BE2B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UploadStreamDemo", "UploadStreamDemo\UploadStreamDemo.csproj", "{1B8E9714-68A6-4249-93B1-2B5E8BA585F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyClient", "UploadStreamDemo\MyClient.csproj", "{1B8E9714-68A6-4249-93B1-2B5E8BA585F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
